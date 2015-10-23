@@ -52,10 +52,13 @@ void display_usage(char * app)
 
 avr_t * avr = NULL;
 
+uint32_t instruct_count = 0;
+
 void
 sig_int(
 		int sign)
 {
+	printf("%d\n",instruct_count);
 	printf("signal caught, simavr terminating\n");
 	if (avr)
 		avr_terminate(avr);
@@ -178,7 +181,12 @@ int main(int argc, char *argv[])
 	signal(SIGTERM, sig_int);
 
 	for (;;) {
+		instruct_count++;
 		int state = avr_run(avr);
+		if (state == cpu_Sleeping)
+		{
+			printf("%d\n",instruct_count);
+		}
 		if ( state == cpu_Done || state == cpu_Crashed)
 			break;
 	}

@@ -176,7 +176,7 @@ static void avr_uart_udr_write(struct avr_t * avr, avr_io_addr_t addr, uint8_t v
 static void avr_uart_write(struct avr_t * avr, avr_io_addr_t addr, uint8_t v, void * param)
 {
 	avr_uart_t * p = (avr_uart_t *)param;
-
+	exit(1);
 	if (p->udrc.vector && addr == p->udrc.enable.reg) {
 		/*
 		 * If enabling the UDRC interrupt, raise it immediately if FIFO is empty
