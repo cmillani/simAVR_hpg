@@ -186,6 +186,7 @@ int main(int argc, char *argv[])
 		if (state == cpu_Sleeping)
 		{
 			printf("%d\n",instruct_count);
+			break;
 		}
 		if ( state == cpu_Done || state == cpu_Crashed)
 			break;
